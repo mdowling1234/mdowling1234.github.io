@@ -1,0 +1,22 @@
+---
+title: "R Markdown and Leaflet Assignment"
+output: html_document
+author: Michael
+date: December 09, 2020
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(leaflet)
+library(htmltools)
+```
+
+```{r}
+m <- leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng=9.99155, lat=48.39841, popup="The birthplace of Albert Einstein")
+m
+```
