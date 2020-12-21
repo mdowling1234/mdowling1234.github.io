@@ -1,0 +1,26 @@
+```{r}
+library("xlsx")
+library("leaflet")
+setwd("C:/Users/17244/Documents/R/CourseEra")
+National <- read.delim("National.txt",)
+
+National <- data.frame(lat = National$Latitude,
+                       lng = National$Longitude,
+                       popup = National$Place.Name)
+
+NP_icon <- makeIcon(
+  iconUrl = "https://upload.wikimedia.org/wikipedia/commons/1/1d/US-NationalParkService-Logo.svg",
+  iconWidth = 31*215/230, iconHeight = 45,
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+
+
+
+project_map <- National %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(clusterOptions = markerClusterOptions(), 
+             popup = National$popup, icon = NP_icon)
+
+project_map
+```   
